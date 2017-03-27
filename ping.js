@@ -1,18 +1,17 @@
 /**
-    * A command that can check if the bot is alive.
-    *
-    * Written By:
-    *              Matthew Knox
-    *
-    * License:
-    *              MIT License. All code unless otherwise specified is
-    *              Copyright (c) Matthew Knox and Contributors 2015.
-    */
+ * A command that can check if the bot is alive.
+ *
+ * Written By:
+ *              Matthew Knox
+ *
+ * License:
+ *              MIT License. All code unless otherwise specified is
+ *              Copyright (c) Matthew Knox and Contributors 2017.
+ */
 
-var os = require('os');
+const os = require('os');
 
-exports.run = function(api, event) {
-    api.sendMessage(this.packageInfo.name + ' ' + this.packageInfo.version + ' @ ' + os.hostname() +
-    ' (' + os.type() + ' ' + os.arch() + ')', event.thread_id);
-    return false;
+exports.run = (api, event) => {
+    const pi = exports.platform.packageInfo;
+    api.sendMessage(`${pi.name} ${pi.version} @ ${os.hostname()} (${os.type()} ${os.arch()})`, event.thread_id);
 };
