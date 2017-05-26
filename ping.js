@@ -12,6 +12,13 @@
 const os = require('os');
 
 exports.run = (api, event) => {
-    const pi = exports.platform.packageInfo;
-    api.sendMessage(`${pi.name} ${pi.version} @ ${os.hostname()} (${os.type()} ${os.arch()})`, event.thread_id);
+    const pi = exports.platform.packageInfo,
+        name = pi.name,
+        vers = pi.version,
+        host = os.hostname(),
+        plat = os.type(),
+        arch = os.arch(),
+        node = process.release.name,
+        nver = process.version;
+    api.sendMessage(`${name} ${vers} @ ${host} (${plat} ${arch}, ${node} ${nver})`, event.thread_id);
 };
